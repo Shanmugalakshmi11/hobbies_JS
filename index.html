@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hobbies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      background-color: #1eafe9;
+      font-size: medium;
+      text-align: justify;
+      align-items: center;
+      display: flex;
+      padding: 10px;
+      margin: 2px 0;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Hobbies</h1>
+
+  <form id="hobbyForm">
+    <label for="hobbyInput">Enter a Hobby:</label>
+    <input type="text" id="hobbyInput" placeholder="E.g., Reading" required>
+    <button type="submit">Add Hobby</button>
+  </form>
+
+  <ul id="hobbiesList"></ul>
+
+  <script>
+    let hobbies = [];
+
+    function addHobby(newHobby) {
+      if (hobbies.length >= 10) {
+        hobbies.shift();
+      }
+      hobbies.push(newHobby);
+      displayHobbies();
+    }
+
+    function displayHobbies() {
+      const hobbiesList = document.getElementById('hobbiesList');
+      hobbiesList.innerHTML = '';
+
+      for (let i = 0; i < hobbies.length; i++) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `My ${i + 1}st hobby: ${hobbies[i]}`;
+        hobbiesList.appendChild(listItem);
+      }
+    }
+
+    const hobbyForm = document.getElementById('hobbyForm');
+
+    hobbyForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const hobbyInput = document.getElementById('hobbyInput');
+      const newHobby = hobbyInput.value.trim();
+
+      if (newHobby !== '') {
+        addHobby(newHobby);
+        hobbyInput.value = '';
+      }
+    });
+
+    // Initial hobbies
+    addHobby('Reading');
+    addHobby('Gardening');
+    addHobby('Coding');
+    addHobby('Photography');
+    addHobby('Traveling');
+    addHobby('Cooking');
+  </script>
+
+</body>
+</html>
